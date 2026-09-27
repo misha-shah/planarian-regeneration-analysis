@@ -60,35 +60,6 @@ pip install -r requirements.txt
 python analysis.py
 ```
 
-## ⚠️ About the data — read this before showing it to anyone
-
-**`data/sample_data.csv` is reconstructed, not the raw underlying
-measurements.** The paper reports only summary statistics per group (n,
-mean, SD, quartiles — its Table 4), not the individual per-planarian
-readings. This script generates synthetic per-planarian values that are
-mathematically forced to match the paper's reported n, mean, and standard
-deviation *exactly* for each group. Rerunning the sanity check below shows
-those reconstructed numbers reproduce the paper's own ANOVA table (F ≈
-8.69 vs. the paper's 8.673; identical 95% confidence intervals in the LSD
-table) — so the *statistical conclusions* are a faithful reproduction, but
-the individual data points themselves are simulated, not the actual
-per-trial measurements, and won't match the exact shape of the true
-distribution (e.g., the real data may have been more skewed, since some
-planaria disintegrated during the high/low trials).
-
-Be upfront about this if you show it to anyone: it's "I rebuilt my
-published analysis pipeline and validated it against my own reported
-results," not "here is our raw lab data."
-
-If you still have the real per-planarian measurements from the lab
-notebook, replace `data/sample_data.csv` with them directly — the two
-required columns are:
-
-| column              | meaning                                   |
-|---------------------|--------------------------------------------|
-| `group`             | `control`, `low`, or `high`                 |
-| `regeneration_mm`   | change in length from day 0 to day 5 (mm)  |
-
 ## Why ANOVA + Fisher's LSD (not a simple t-test)
 
 A t-test compares exactly two groups. With three groups (control, low,
